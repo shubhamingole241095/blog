@@ -1,0 +1,58 @@
+<li>Blog</li>
+<div class="row">
+ <div class="col-md-9">
+   <div class="blog">
+    <% if @posts.any? %>
+      <% @posts.each do |post| %>
+        <div class="post">
+          <h2><%= link_to post.title, post_path(post) %></h2>
+
+          <div class="date">
+            <span class="glyphicon glyphicon-time"></span>
+            <%= post.published_date.strftime("%B %d, %Y") %>
+          </div>
+
+          <p><%= post.snippet.html_safe %></p>
+
+          <%= link_to "Read more &rarr;".html_safe, post_path(post) %>
+        </div>
+      <% end %>
+    <% else %>
+      <h1>Blog</h1>
+      <p>No posts yet.</p>
+    <% end %>
+   </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="portlet">
+     <h3>Published Blogs</h3>
+      <% if @published.present? %>
+       <ul>
+         <li><%= link_to "Published Blogs", published_posts_path %></li>
+       <ul>
+      <% end %>
+    </div>
+
+    <div class="portlet">
+     <h3>Archived Blogs</h3>
+      <% if @archived.present? %>
+       <ul>
+         <li><%= link_to "Archived Blogs", archived_posts_path %></li>
+       <ul>
+      <% end %>
+    </div>
+
+   <%# if !post_tags.empty? %>
+     <div class="portlet">
+       <h3>Tags</h3>
+
+       <ul>
+         <% @tags.each do |tag | %>
+          <li><%= link_to tag.name, list_by_tag_post_path(tag) %></a></li>
+        <% end %>
+       <ul>
+     </div>
+   <%# end %>
+  </div>
+</div>

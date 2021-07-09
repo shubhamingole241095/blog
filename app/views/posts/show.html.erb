@@ -1,0 +1,16 @@
+<li><%= link_to "Blog", posts_path %></li>
+<div class="post">
+  <h1><%= @post.title %></h1>
+
+  <div class="date">
+    <span class="glyphicon glyphicon-time"></span>
+    <%= @post.published_date.strftime("%B %d, %Y") %>
+  </div>
+
+  <p><%= @post.body %></p>
+  <div class="tags">
+    <% @post.tags.each do |tag| %>
+      <%= link_to tag.name, list_by_tag_post_path(tag), :class => "btn btn-info btn-xs" %>
+    <% end %>
+  </div>
+</div>

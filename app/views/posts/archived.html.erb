@@ -1,0 +1,16 @@
+<li><%= link_to "Blog", posts_path %></li>
+<li>Archived</li>
+<div class="post-archive">
+  <h1>Archived Blogs</h1>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <div class="date">
+          <%= post.published_date.strftime("%b %d") %>
+        </div>
+
+        <%= link_to post.title.html_safe, post_path(post) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
